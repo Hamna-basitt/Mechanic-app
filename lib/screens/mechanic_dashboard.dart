@@ -183,7 +183,7 @@ class _MechanicDashboardScreenState extends State<MechanicDashboardScreen> {
               style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 12),
-            ...requests.map((req) => _requestCard(req)).toList(),
+            ...requests.map((req) => _requestCard(req)),
           ],
         ),
       ),

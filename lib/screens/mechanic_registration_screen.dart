@@ -329,7 +329,7 @@ class _MechanicRegistrationScreenState
       child: Column(
         children: [
           DropdownButtonFormField(
-            value: mechanicType,
+            initialValue: mechanicType,
             items: const [
               DropdownMenuItem(value: 'Bike Mechanic', child: Text('Bike Mechanic')),
               DropdownMenuItem(value: 'Car Mechanic', child: Text('Car Mechanic')),
