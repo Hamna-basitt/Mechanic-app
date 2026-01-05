@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -9,6 +10,15 @@ import 'r_screen.dart';
 import 'enable_loc.dart';
 import 'phone_otp_screen.dart';
 import '../services/phone_auth_service.dart';
+=======
+import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'user_session.dart';
+import 'otpScreenforgotpassword.dart';
+import 'r_screen.dart';
+import 'enable_loc.dart';
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
 
 class VerifyScreen extends StatefulWidget {
   const VerifyScreen({super.key});
@@ -20,6 +30,7 @@ class VerifyScreen extends StatefulWidget {
 class _VerifyScreenState extends State<VerifyScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+<<<<<<< HEAD
   final TextEditingController _phoneController = TextEditingController();
   
   final PhoneAuthService _phoneAuthService = PhoneAuthService();
@@ -41,12 +52,22 @@ class _VerifyScreenState extends State<VerifyScreen> {
     {'code': '+44', 'country': 'UK'},
     {'code': '+971', 'country': 'UAE'},
   ];
+=======
+
+  bool isValid = false;
+  bool isLoading = false;
+  bool isForgotLoading = false;
+
+  /// 🔴 ADDED
+  bool _obscurePassword = true;
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
 
   @override
   void initState() {
     super.initState();
     _emailController.addListener(_validateInputs);
     _passwordController.addListener(_validateInputs);
+<<<<<<< HEAD
     _phoneController.addListener(_validateInputs);
   }
 
@@ -64,12 +85,28 @@ class _VerifyScreenState extends State<VerifyScreen> {
         isValid = phone.length >= 10;
       });
     }
+=======
+  }
+
+  void _validateInputs() {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
+
+    final emailValid = RegExp(
+      r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
+    ).hasMatch(email);
+
+    setState(() {
+      isValid = emailValid && password.length >= 8;
+    });
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
   }
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+<<<<<<< HEAD
     _phoneController.dispose();
     super.dispose();
   }
@@ -79,11 +116,28 @@ class _VerifyScreenState extends State<VerifyScreen> {
     if (isLoading) return;
 
     setState(() => isLoading = true);
+=======
+    super.dispose();
+  }
+
+  // ---------------- LOGIN ---------------- //
+  void _login() async {
+    if (isLoading) return;
+
+    setState(() {
+      isLoading = true;
+    });
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
 
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
 
+<<<<<<< HEAD
     final url = Uri.parse("https://mechanicapp-service-621632382478.asia-south1.run.app/api/user/login");
+=======
+    final url = Uri.parse(
+        "https://mechanicapp-service-621632382478.asia-south1.run.app/api/user/login");
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
 
     try {
       final response = await http.post(
@@ -111,6 +165,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
     }
   }
 
+<<<<<<< HEAD
   // ---------------- LOGIN WITH PHONE ---------------- //
   void _loginWithPhone() async {
     final phoneNumber = '$_selectedCountryCode${_phoneController.text.trim()}';
@@ -155,6 +210,8 @@ class _VerifyScreenState extends State<VerifyScreen> {
     );
   }
 
+=======
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
   // ---------------- FORGOT PASSWORD ---------------- //
   void _forgotPassword() async {
     final email = _emailController.text.trim();
@@ -165,7 +222,12 @@ class _VerifyScreenState extends State<VerifyScreen> {
 
     setState(() => isForgotLoading = true);
 
+<<<<<<< HEAD
     final url = Uri.parse("https://mechanicapp-service-621632382478.asia-south1.run.app/api/user/forgot");
+=======
+    final url = Uri.parse(
+        "https://mechanicapp-service-621632382478.asia-south1.run.app/api/user/forgot");
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
 
     try {
       final response = await http.post(
@@ -207,6 +269,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Welcome Back 👋",
+<<<<<<< HEAD
                   style: GoogleFonts.poppins(fontSize: 28, fontWeight: FontWeight.w700)),
               const SizedBox(height: 8),
               Text(
@@ -355,6 +418,53 @@ class _VerifyScreenState extends State<VerifyScreen> {
                   ],
                 ),
               ],
+=======
+                  style: GoogleFonts.poppins(
+                      fontSize: 28, fontWeight: FontWeight.w700)),
+              const SizedBox(height: 8),
+              Text("Login with your email and password",
+                  style: GoogleFonts.poppins(
+                      fontSize: 15, color: Colors.black54)),
+              const SizedBox(height: 50),
+
+              // EMAIL
+              Text("Email",
+                  style: GoogleFonts.poppins(
+                      fontSize: 15, fontWeight: FontWeight.w500)),
+              const SizedBox(height: 6),
+              TextField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: _inputDecoration("example@gmail.com"),
+              ),
+
+              const SizedBox(height: 22),
+
+              // PASSWORD (👁 added)
+              Text("Password",
+                  style: GoogleFonts.poppins(
+                      fontSize: 15, fontWeight: FontWeight.w500)),
+              const SizedBox(height: 6),
+              TextField(
+                controller: _passwordController,
+                obscureText: _obscurePassword,
+                decoration: _inputDecoration("Min 8 characters").copyWith(
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePassword
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                      color: const Color(0xFFFB3300),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscurePassword = !_obscurePassword;
+                      });
+                    },
+                  ),
+                ),
+              ),
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
 
               const SizedBox(height: 30),
 
@@ -363,6 +473,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                 width: double.infinity,
                 height: 52,
                 child: ElevatedButton(
+<<<<<<< HEAD
                   onPressed: (isValid && !isLoading) 
                     ? (isEmailMode ? _loginWithEmail : _loginWithPhone) 
                     : null,
@@ -376,11 +487,25 @@ class _VerifyScreenState extends State<VerifyScreen> {
                           isEmailMode ? "Login" : "Send OTP", 
                           style: GoogleFonts.poppins(fontSize: 17, color: Colors.white)
                         ),
+=======
+                  onPressed: (isValid && !isLoading) ? _login : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFFB3300),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14)),
+                  ),
+                  child: isLoading
+                      ? const CircularProgressIndicator(color: Colors.white)
+                      : Text("Login",
+                          style: GoogleFonts.poppins(
+                              fontSize: 17, color: Colors.white)),
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
                 ),
               ),
 
               const SizedBox(height: 15),
 
+<<<<<<< HEAD
               // FORGOT PASSWORD (Only for Email)
               if (isEmailMode)
                 Align(
@@ -421,6 +546,59 @@ class _VerifyScreenState extends State<VerifyScreen> {
                     onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const RegisterScreen())),
                     child: Text("Register",
                         style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w600, color: const Color(0xFFFB3300))),
+=======
+              // FORGOT PASSWORD
+              Align(
+                alignment: Alignment.centerRight,
+                child: GestureDetector(
+                  onTap: isForgotLoading ? null : _forgotPassword,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (isForgotLoading)
+                        const SizedBox(
+                          width: 14,
+                          height: 14,
+                          child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: Color(0xFFFB3300)),
+                        ),
+                      if (isForgotLoading) const SizedBox(width: 8),
+                      Text(
+                        isForgotLoading
+                            ? "Forgetting password..."
+                            : "Forgot Password?",
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: const Color(0xFFFB3300),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 25),
+
+              // REGISTER
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Don't have an account? ",
+                      style: GoogleFonts.poppins(fontSize: 14)),
+                  GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const RegisterScreen()),
+                    ),
+                    child: Text("Register",
+                        style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: const Color(0xFFFB3300))),
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
                   ),
                 ],
               ),
@@ -435,6 +613,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
     return InputDecoration(
       hintText: hint,
       filled: true,
+<<<<<<< HEAD
       fillColor: Colors.white,
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
@@ -445,6 +624,18 @@ class _VerifyScreenState extends State<VerifyScreen> {
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
         borderSide: const BorderSide(color: Color(0xFFFB3300), width: 2),
+=======
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide:
+            const BorderSide(color: Color(0xFFFB3300), width: 1.3),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide:
+            const BorderSide(color: Color(0xFFFB3300), width: 2),
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
       ),
     );
   }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'screens/s_screen.dart';
@@ -9,6 +10,13 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+=======
+import 'package:flutter/material.dart';
+import 'screens/s_screen.dart';
+
+
+void main() {
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
   runApp(const MechConnectApp());
 }
 

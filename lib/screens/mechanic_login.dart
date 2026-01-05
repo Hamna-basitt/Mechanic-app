@@ -126,7 +126,11 @@ class _MechanicLoginScreenState extends State<MechanicLoginScreen> {
                 obscureText: _obscurePassword,
                 onChanged: (_) => _checkFields(),
                 decoration: InputDecoration(
+<<<<<<< HEAD
                  // hintText: "Min 8 characters",
+=======
+                  hintText: "Min 8 characters",
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
                   filled: true,
                   fillColor: const Color(0xFFF3F3F3),
                   contentPadding: const EdgeInsets.symmetric(

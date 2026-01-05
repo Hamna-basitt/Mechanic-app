@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'otp_screen.dart';
@@ -6,6 +7,12 @@ import 'phone_otp_screen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../services/phone_auth_service.dart';
+=======
+import 'package:google_fonts/google_fonts.dart';
+import 'otp_screen.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -17,13 +24,17 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _emailC = TextEditingController();
   final TextEditingController _passC = TextEditingController();
+<<<<<<< HEAD
   final TextEditingController _phoneC = TextEditingController();
   
   final PhoneAuthService _phoneAuthService = PhoneAuthService();
+=======
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
 
   bool isValid = false;
   bool hidePassword = true;
   bool isLoading = false;
+<<<<<<< HEAD
   
   // Toggle: true = Email, false = Phone
   bool isEmailMode = true;
@@ -38,12 +49,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
     {'code': '+44', 'country': 'UK'},
     {'code': '+971', 'country': 'UAE'},
   ];
+=======
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
 
   @override
   void initState() {
     super.initState();
     _emailC.addListener(_validate);
     _passC.addListener(_validate);
+<<<<<<< HEAD
     _phoneC.addListener(_validate);
   }
 
@@ -67,12 +81,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   // Email Registration
   Future<void> _registerWithEmail() async {
+=======
+  }
+
+  void _validate() {
+    final email = _emailC.text.trim();
+    final pass = _passC.text.trim();
+
+    bool validEmail = RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+        .hasMatch(email);
+    bool validPass = pass.length >= 8;
+
+    setState(() {
+      isValid = validEmail && validPass;
+    });
+  }
+
+  Future<void> _register() async {
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
     final email = _emailC.text.trim();
     final password = _passC.text.trim();
 
     final url = Uri.parse("https://mechanicapp-service-621632382478.asia-south1.run.app/api/user/register");
 
+<<<<<<< HEAD
     setState(() => isLoading = true);
+=======
+    setState(() {
+      isLoading = true;
+    });
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
 
     try {
       final response = await http.post(
@@ -84,6 +122,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         }),
       );
 
+<<<<<<< HEAD
       setState(() => isLoading = false);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -102,10 +141,48 @@ class _RegisterScreenState extends State<RegisterScreen> {
       setState(() => isLoading = false);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Server not reachable ❌"), backgroundColor: Colors.red),
+=======
+      setState(() {
+        isLoading = false;
+      });
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        // ✅ Success → navigate OTP screen
+       Navigator.push(
+  context,
+  MaterialPageRoute(
+  builder: (_) => OtpScreen(
+    email: email,
+    password: password,
+  ),
+),
+
+);
+      } else {
+        
+        // ❌ Error → show backend message
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.body),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Server not reachable ❌"),
+          backgroundColor: Colors.red,
+        ),
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
       );
     }
   }
 
+<<<<<<< HEAD
   // Phone Registration
   Future<void> _registerWithPhone() async {
     final phoneNumber = '$_selectedCountryCode${_phoneC.text.trim()}';
@@ -163,6 +240,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
   }
 
+=======
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -183,6 +262,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 8),
               Text(
+<<<<<<< HEAD
                 isEmailMode 
                   ? "Register with your email and password"
                   : "Register with your phone number",
@@ -338,10 +418,89 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(height: 40),
 
               // ============ REGISTER BUTTON ============
+=======
+                "Register with your email and password",
+                style: GoogleFonts.poppins(
+                  fontSize: 15,
+                  color: Colors.black54,
+                ),
+              ),
+              const SizedBox(height: 45),
+
+              // ---------------- EMAIL ----------------
+              Text("Email",
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w600, fontSize: 15)),
+              const SizedBox(height: 6),
+              TextField(
+                controller: _emailC,
+                keyboardType: TextInputType.emailAddress,
+                style: GoogleFonts.poppins(),
+                decoration: InputDecoration(
+                  hintText: "example@gmail.com",
+                  hintStyle: GoogleFonts.poppins(color: Colors.black45),
+                  filled: true,
+                  fillColor: Colors.white,
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(14),
+                    borderSide:
+                        const BorderSide(color: Color(0xFFFB3300), width: 1.3),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(14),
+                    borderSide:
+                        const BorderSide(color: Color(0xFFFB3300), width: 2),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+
+              // ---------------- PASSWORD ----------------
+              Text("Password",
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w600, fontSize: 15)),
+              const SizedBox(height: 6),
+              TextField(
+                controller: _passC,
+                obscureText: hidePassword,
+                style: GoogleFonts.poppins(),
+                decoration: InputDecoration(
+                  hintText: "Minimum 8 characters",
+                  hintStyle: GoogleFonts.poppins(color: Colors.black45),
+                  filled: true,
+                  fillColor: Colors.white,
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      hidePassword ? Icons.visibility_off : Icons.visibility,
+                      color: Colors.black54,
+                    ),
+                    onPressed: () => setState(() => hidePassword = !hidePassword),
+                  ),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(14),
+                    borderSide:
+                        const BorderSide(color: Color(0xFFFB3300), width: 1.3),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(14),
+                    borderSide:
+                        const BorderSide(color: Color(0xFFFB3300), width: 2),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 40),
+
+              // ---------------- REGISTER BUTTON ----------------
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
               SizedBox(
                 width: double.infinity,
                 height: 52,
                 child: ElevatedButton(
+<<<<<<< HEAD
                   onPressed: isValid && !isLoading ? _onRegister : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: isValid ? kButtonColor : Colors.grey.shade400,
@@ -356,6 +515,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             fontSize: 17,
                             fontWeight: FontWeight.w600,
                           ),
+=======
+                  onPressed: isValid && !isLoading ? _register : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: isValid
+                        ? const Color(0xFFFB3300)
+                        : Colors.grey.shade400,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                  ),
+                  child: isLoading
+                      ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : Text(
+                          "Send OTP",
+                          style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600),
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
                         ),
                 ),
               ),
@@ -365,6 +545,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
+<<<<<<< HEAD
 
   InputDecoration _inputDecoration(String hint) {
     return InputDecoration(
@@ -383,4 +564,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
+=======
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:url_launcher/url_launcher.dart';
+=======
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
 
 class Mechanic {
   final String id;
@@ -111,10 +114,17 @@ class MechanicDetailScreen extends StatelessWidget {
                             ),
                           ),
                           Positioned.fill(
+<<<<<<< HEAD
                             child: Container(color: Colors.black.withOpacity(0.03)),
                           ),
                           Center(
                             child: Icon(Icons.map_outlined, size: 56, color: primaryColor.withOpacity(0.8)),
+=======
+                            child: Container(color: Colors.black.withValues(alpha: 0.03)),
+                          ),
+                          Center(
+                            child: Icon(Icons.map_outlined, size: 56, color: primaryColor.withValues(alpha: 0.8)),
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
                           ),
                           Positioned(
                             bottom: 12,
@@ -123,10 +133,17 @@ class MechanicDetailScreen extends StatelessWidget {
                             child: Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                               decoration: BoxDecoration(
+<<<<<<< HEAD
                                 color: Colors.white.withOpacity(0.95),
                                 borderRadius: BorderRadius.circular(8),
                                 boxShadow: [
                                   BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 8),
+=======
+                                color: Colors.white.withValues(alpha: 0.95),
+                                borderRadius: BorderRadius.circular(8),
+                                boxShadow: [
+                                  BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8),
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
                                 ],
                               ),
                               child: Row(
@@ -160,6 +177,7 @@ class MechanicDetailScreen extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: mechanic.phone.trim().isNotEmpty
+<<<<<<< HEAD
                         ? () async {
                              final Uri launchUri = Uri(scheme: 'tel', path: mechanic.phone);
                              if (await canLaunchUrl(launchUri)) {
@@ -169,6 +187,12 @@ class MechanicDetailScreen extends StatelessWidget {
                                   SnackBar(content: Text('Could not launch dialer for ${mechanic.phone}'))
                                 );
                              }
+=======
+                        ? () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Would open call to ${mechanic.phone}'))
+                            );
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
                           }
                         : null,
                     style: ElevatedButton.styleFrom(
@@ -220,11 +244,17 @@ class MechanicDetailScreen extends StatelessWidget {
   Widget _buildAvatar() {
     return CircleAvatar(
       radius: 36,
+<<<<<<< HEAD
       backgroundImage: mechanic.avatarUrl.startsWith('http')
           ? NetworkImage(mechanic.avatarUrl)
           : (mechanic.avatarUrl.isNotEmpty
               ? AssetImage(mechanic.avatarUrl)
               : const AssetImage('assets/images/car.jpg')) as ImageProvider,
+=======
+      backgroundImage: mechanic.avatarUrl.isNotEmpty
+          ? NetworkImage(mechanic.avatarUrl)
+          : const AssetImage('assets/images/car.jpg') as ImageProvider,
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
     );
   }
 
@@ -260,7 +290,11 @@ class MechanicDetailScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
+<<<<<<< HEAD
         color: primaryColor.withOpacity(0.1),
+=======
+        color: primaryColor.withValues(alpha: 0.1),
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -289,9 +323,15 @@ class MechanicDetailScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
+<<<<<<< HEAD
         color: color.withOpacity(0.12),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: color.withOpacity(0.14)),
+=======
+        color: color.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: color.withValues(alpha: 0.14)),
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
       ),
       child: Text(text, style: TextStyle(color: color, fontWeight: FontWeight.w600)),
     );
@@ -301,7 +341,11 @@ class MechanicDetailScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
+<<<<<<< HEAD
         color: primaryColor.withOpacity(0.1),
+=======
+        color: primaryColor.withValues(alpha: 0.1),
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text('${mechanic.experienceYears} yrs experience', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13, color: primaryColor)),

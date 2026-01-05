@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+<<<<<<< HEAD
 import 'package:url_launcher/url_launcher.dart';
+=======
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
 import 'view_detail.dart';
 
 class MechanicListScreen extends StatelessWidget {
@@ -84,9 +87,13 @@ class _NearbyMechanicCardVertical extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 28,
+<<<<<<< HEAD
                 backgroundImage: mechanic['image'].toString().startsWith('http')
                     ? NetworkImage(mechanic['image'])
                     : AssetImage(mechanic['image']) as ImageProvider,
+=======
+                backgroundImage: AssetImage(mechanic['image']),
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -132,6 +139,7 @@ class _NearbyMechanicCardVertical extends StatelessWidget {
                 Icons.call_rounded,
                 "Call",
                 Colors.green,
+<<<<<<< HEAD
                 () async {
                   final phone = mechanic['phone'] as String?;
                   if (phone != null && phone.isNotEmpty) {
@@ -149,6 +157,9 @@ class _NearbyMechanicCardVertical extends StatelessWidget {
                     );
                   }
                 },
+=======
+                () {},
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
               ),
               _actionButton(
                 Icons.remove_red_eye_rounded,
@@ -172,7 +183,10 @@ class _NearbyMechanicCardVertical extends StatelessWidget {
                           phone: mechanic['phone'],
                           lat: 0.0,
                           lng: 0.0,
+<<<<<<< HEAD
                           experienceYears: mechanic['experience'] ?? 0,
+=======
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
                         ),
                       ),
                     ),

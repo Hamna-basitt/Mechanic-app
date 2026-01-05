@@ -3,6 +3,7 @@ plugins {
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+<<<<<<< HEAD
     id("com.google.gms.google-services")
 }
 dependencies {
@@ -14,6 +15,10 @@ dependencies {
   // When using the BoM, don't specify versions in Firebase dependencies
   // https://firebase.google.com/docs/android/setup#available-libraries
 }
+=======
+}
+
+>>>>>>> 176a7fec0fb3584ef958e6ed87bb4e58bc590a39
 android {
     namespace = "com.example.mech_app"
     compileSdk = flutter.compileSdkVersion
